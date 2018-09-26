@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The core configuration file for the framework is the default (struts.xml) file
+and should reside on the classpath of the webapp (generally /WEB-INF/classes). -->
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+  <!-- devMode equals debug information and reload everything for every request -->
+  <constant name="struts.devMode" value="true" />
+  <constant name="struts.ui.theme" value="bootstrap" />
+
+  <package name="hey" extends="struts-default">
+	
+	<default-action-ref name="index" />
+	
+	<global-results>
+		<result name="error">/error.jsp</result>
+	</global-results>
+
+	<!-- all exceptions not caught by the application will lead to error.jsp -->
+	<global-exception-mappings>
+		<exception-mapping exception="java.lang.Exception" result="error" />
+	</global-exception-mappings>
+
+	<!-- 'index' action leads to the view provided by index.jsp -->
+    <action name="index">
+      <result>/login.jsp</result>
+    </action>
+    
+    
+    <action name="registar_utilizador" class="ivotewebserver.action.RegistarPessoaAction" method="execute">
+    	<result name="success">/registar_pessoa.jsp</result>
+    	<result name="error">/registar_pessoa.jsp</result>
+    	<result name="login">/login.jsp</result>
+    </action>
+
+
+	<!-- 'login' action calls 'execute' in 'LoginAction' -->
+    <action name="login" class="ivotewebserver.action.LoginAction" method="execute">
+      <result name="admin">/welcomeAdmin.jsp</result>
+      <result name="user">/welcomeEleitor.jsp</result>
+      <result name="login">/login.jsp</result>
+    </action>
+    
+    
+    <action name="popularAction" class="ivotewebserver.action.RegistarPessoaAction" method="display">
+    	<result name="success">/registar_pessoa.jsp</result>
+    </action>
+    
+    <action name="homeAction" class="ivotewebserver.action.HomeAction" method="execute">
+    	<result name="login">/login.jsp</result>
+    	<result name="admin">/welcomeAdmin.jsp</result>
+    	<result name="user">/welcomeEleitor.jsp</result>
+    </action>
+    
+    <action name="goCriaEleicaoAction">
+    	<result name="success">/cria_tipo_eleicao.jsp</result>
+    </action>
+    <action name="goCriaEleicaoNucleoAction">
+    	<result name="success">/eleicaoNucleo.jsp</result>
+    </action>
+    <action name="goCriaEleicaoGeralAction">
+    	<result name="success">/eleicaoConsGeral.jsp</result>
+    </action>
+    
+	<action name="criar_eleicao_nucleo" class="ivotewebserver.action.criarEleicaoNucleo" method="execute">
+    	<result name="success">/eleicaoNucleo.jsp</result>
+    	<result name="login">/login.jsp</result>
+    	<result name="error">/eleicaoNucleo.jsp</result>
+    	<result name="input">/eleicaoNucleo.jsp</result>
+    </action>
+    
+	<action name="criar_eleicao_geral" class="ivotewebserver.action.criarEleicaoGeral" method="execute">
+    	<result name="success">/eleicaoConsGeral.jsp</result>
+    	<result name="login">/login.jsp</result>
+    	<result name="error">/eleicaoConsGeral.jsp</result>
+    	<result name="input">/eleicaoConsGeral.jsp</result>
+    </action>
+    
+    <action name="goAdicionaMesaVoto">
+    	<result name="success">/adicionaMesaVoto.jsp</result>
+    </action>
+    
+    <action name="adicionar_mesa_voto" class="ivotewebserver.action.adicionaMesaVotoAction">
+    	<result name="success">/adicionaMesaVoto.jsp</result>
+    	<result name="login">/login.jsp</result>
+    	<result name="error">/adicionaMesaVoto.jsp</result>
+    	<result name="input">/adicionaMesaVoto.jsp</result>
+    </action>
+    
+    <action name="goCriaFaculdadeAction">
+    	<result name="success">/criar_faculdade.jsp</result>
+    </action>   
+    <action name="criar_faculdade" class="ivotewebserver.action.CriarFaculdadeAction" method="execute">
+    	<result name="success">/criar_faculdade.jsp</result>
+    	<result name="error">/criar_faculdade.jsp</result>
+    </action>    
+    
+    <action name="goCriaDepartamentoAction">
+    	<result name="success">/criar_departamento.jsp</result>
+    </action>
+    <action name="criar_departamento" class="ivotewebserver.action.CriarDepartamentoAction" method="execute">
+    	<result name="success">/criar_departamento.jsp</result>
+    	<result name="error">/criar_departamento.jsp</result>
+    </action>
+    
+    <action name="goAlteraPessoa">
+    	<result name="success">/alteraPessoa.jsp</result>
+    </action>
+    <action name="alterar_pessoa" class="ivotewebserver.action.alteraPessoa" method="execute">
+    	<result name="success">/alteraPessoa.jsp</result>
+    	<result name="login">/login.jsp</result>
+    	<result name="error">/alteraPessoa.jsp</result>
+    	<result name="input">/alteraPessoa.jsp</result>
+    </action>
+    
+    <action name="goAlteraDepAction">
+    	<result name="success">/alteraDep.jsp</result>
+    </action>
+    <action name="alterar_departamento" class="ivotewebserver.action.AlteraDepartamentoAction" method="execute">
+    	<result name="success">/alteraDep.jsp</result>
+    	<result name="login">/login.jsp</result>
+    	<result name="error">/alteraDep.jsp</result>
+    	<result name="input">/alteraDep.jsp</result>
+    </action>
+    
+    <action name="goAlteraFacAction">
+    	<result name="success">/alteraFac.jsp</result>
+    </action>
+    <action name="alterar_faculdade" class="ivotewebserver.action.AlteraFaculdadeAction" method="execute">
+    	<result name="success">/alteraDep.jsp</result>
+    	<result name="login">/login.jsp</result>
+    	<result name="error">/alteraDep.jsp</result>
+    	<result name="input">/alteraDep.jsp</result>
+    </action>
+    
+    <action name="goImprimeEleicoesAction" class="ivotewebserver.action.imprimeEleicoesAction">
+    	<result name="success">/imprimeEleicoes.jsp</result>
+    </action>
+    
+    
+    <action name="goImprimeDepartamentos" class="ivotewebserver.action.imprimeDepartamentosAction">
+    	<result name="success">/imprimeDepartamentos.jsp</result>
+    </action>
+    
+    <action name="goImprimeFaculdades" class="ivotewebserver.action.imprimeFaculdadesAction">
+    	<result name="success">/imprimeFaculdades.jsp</result>
+    </action>
+    
+    <action name="goAlteraEleicaoAction">
+    	<result name="success">/alteraeleicao.jsp</result>
+    </action>
+    <action name="alterar_eleicao" class="ivotewebserver.action.AlteraEleicaoAction">
+    	<result name="success">/alteraeleicao.jsp</result>
+    	<result name="login">/login.jsp</result>
+    	<result name="error">/alteraeleicao.jsp</result>
+    	<result name="input">/alteraeleicao.jsp</result>
+    </action>
+    
+    <action name="goCriaListaCandidatosAction">
+    	<result name="success">/criaLisCandidatos.jsp</result>
+    </action>
+    <action name="criar_lista_candid" class="ivotewebserver.action.criaListaCandidatos">
+    	<result name="success">/criaLisCandidatos.jsp</result>
+    	<result name="login">/login.jsp</result>
+    	<result name="error">/criaLisCandidatos.jsp</result>
+    	<result name="input">/criaLisCandidatos.jsp</result>
+    </action>
+    
+    <action name="goDetalhesEleicaoAction" class="ivotewebserver.action.detalhesEleicao">
+    	<interceptor-ref name="defaultStack"/>
+    	<result name="success">/detalhesEleicao.jsp</result>
+    	<result name="error">/detalhesEleicao.jsp</result>
+    </action>
+    
+    
+    <action name="goListaEleicoesEleitor" class="ivotewebserver.action.listaEleicoesEleitor">
+    	<result name="success">/listaEleicoesEleitor.jsp</result>
+    	<result name="login">/login.jsp</result>
+    </action>
+    
+    <action name="goMostraListasEleitor" class="ivotewebserver.action.mostraListasEleitor">
+    	<interceptor-ref name="defaultStack"/>
+    	<result name="success">/mostraListasEleitor.jsp</result>
+    	<result name="login">/login.jsp</result>
+    </action>
+    
+    <action name="goMostraMesasOnline" class="ivotewebserver.action.mostraMesasOnline">
+    	<result name="success">/mostraMesasVotoOnline.jsp</result>
+    	<result name="login">/login.jsp</result>
+    </action>
+    
+    <action name="goVotarEleitor" class="ivotewebserver.action.votarEleitor">
+    	<interceptor-ref name="defaultStack"/>
+    	<result name="success" type="redirectAction">homeAction</result>
+    	<result name="login">/login.jsp</result>
+    </action>
+    
+    <action name="goRegistoEleitor">
+        <result name="success">/registoVoto.jsp</result>
+    </action>
+    
+    <action name="registoVoto" class="ivotewebserver.action.verRegistoEleitor">
+        <result name="success">/verRegistoEleitor.jsp</result>
+        <result name="login">/login.jsp</result>
+        <result name="error">/registoVoto.jsp</result>
+        <result name="input">/registoVoto.jsp</result>
+    </action>
+    
+    <action name="goRemoveMesaVoto">
+    	<result name="success">/removeMesaVoto.jsp</result>
+    </action>
+    
+    <action name="remover_mesa_voto" class="ivotewebserver.action.removeMesaVotoAction">
+    	<result name="success">/removeMesaVoto.jsp</result>
+    	<result name="login">/login.jsp</result>
+    	<result name="error">/removeMesaVoto.jsp</result>
+    	<result name="input">/removeMesaVoto.jsp</result>
+    </action>
+    
+    <action name="goRegistoProprio">
+        <result name="success">/escolherRegistoEleitor.jsp</result>
+    </action>
+    
+    <action name="registoProprioAction" class="ivotewebserver.action.registoProprioAction" method="execute">
+        <result name="success">/registoProprioEleitor.jsp</result>
+        <result name="login">/login.jsp</result>
+        <result name="error">/escolherRegistoEleitor.jsp</result>
+        <result name="input">/escolherRegistoEleitor.jsp</result>
+    </action>
+    
+    <action name="goEleitoresOnline">
+        <result name="success">/mostraEleitoresOnline.jsp</result>
+    </action>
+    
+    <action name="goLogout" class="ivotewebserver.action.logoutAction">
+        <result name="success">/login.jsp</result>
+    </action>
+    
+
+  </package>
+
+</struts>
